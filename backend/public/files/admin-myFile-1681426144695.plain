@@ -1,0 +1,33 @@
+Side Effect
+
+Events: Add / remove event listener
+Observer pattern : Subcribe / unsubcriber
+Closure
+Timer: setInterval, setTimeout, clearTimeout, clearTimeout
+useState
+Mounted / unmounted
+===
+Call Api
+
+1. Update DOM
+-f8 blog title
+2.Call API
+3.Listen DOM events
+	-Scroll
+	-Resize
+4.Cleanup
+	-Remove listener / Unsubcribe
+	-clear timer
+*Có 3 trường hợp khi sử dụng  useEffect
+1. useEffect(callback)
+-gọi callback mỗi khi component re-render
+-gọi callbak sau khi component thêm element vào dom
+2. useEffect(callback, [])
+-Chỉ gọi callback 1 lần sau khi component mounted
+3. useEffect(callback, [deps])
+-Callback sẽ được gọi lại mỗi khi deps thay đổi
+
+-------------
+1.Callback luôn được gọ sau khi component mounted
+2.Cleanup function luôn được gọi trước khi component unmounted
+3.Cleanup function luôn được gọi trước khi callback được gọi (trừ lần mounted)
