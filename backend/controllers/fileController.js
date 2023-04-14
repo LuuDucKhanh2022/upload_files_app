@@ -8,7 +8,6 @@ const asyncHandler = require("express-async-handler");
 const uploadSingle = asyncHandler(async (req, res, next) => {
   upload.single("myFile")(req, res, async function (err) {
     if (err instanceof multer.MulterError) {
-      console.log(req);
       let message;
       switch (err.code) {
         case "LIMIT_FIELD_VALUE":
@@ -93,18 +92,18 @@ const uploadMutiple = asyncHandler(async (req, res) => {
           "Only the following file formats are accepted: pdf|pptx|doc|docx|xlsx|txt|jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF",
       });
     } else {
-      let listFiles = [];
+      var listFiles = [];
       try {
         req.files.attach_file.forEach(async function (item, index) {
-          // let file = new File({
-          //   name: item.filename,
-          //   type: item.filename.split(".")[1],
-          // });
-          // file.save();
-          let file = await File.create({
+          let file = new File({
             name: item.filename,
             type: item.filename.split(".")[1],
           });
+          file.save();
+          // let file = await File.create({
+          //   name: item.filename,
+          //   type: item.filename.split(".")[1],
+          // });
           listFiles.push(file);
         });
         res.status(200).json({
@@ -142,7 +141,6 @@ const getFiles = asyncHandler(async (req, res) => {
 // get single file
 const getSingleFile = asyncHandler(async (req, res) => {
   try {
-    console.log(req.params.fileId);
     const file = await File.findById(req.params.fileId);
     res.status(200).json({
       success: true,
