@@ -11,9 +11,9 @@ const connectDatabase = require("./config/db");
 const corsOptions = require("./config/cors");
 const enableRedisClient = require("./config/redis");
 
-// app.set("view engine", "ejs");
-// app.set("views", path.join(__dirname, "views"));
-// app.use(express.static(`${__dirname}/public`));
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+app.use(express.static(`public`));
 
 connectDatabase();
 
@@ -50,6 +50,9 @@ app.get("/interns", async (req, res) => {
   );
 });
 
+app.get("*", (req, res) => {
+  res.send("nothing found");
+});
 var port = process.env.PORT || "3000";
 
 app.listen(port, (err) => {
