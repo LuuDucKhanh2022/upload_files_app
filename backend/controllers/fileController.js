@@ -125,11 +125,23 @@ const uploadMutiple = asyncHandler(async (req, res) => {
 // get files
 const getFiles = asyncHandler(async (req, res) => {
   try {
-    const files = await File.find();
-    res.status(200).json({
-      success: true,
-      files,
-    });
+    let files;
+    if (req.query.type) {
+      files = await File.find({ type: req.query.type });
+    } else {
+      files = await File.find();
+    }
+    if (files.length > 0) {
+      res.status(200).json({
+        success: true,
+        files,
+      });
+    } else {
+      res.status(200).json({
+        success: false,
+        message: "Can not find any files",
+      });
+    }
   } catch (err) {
     res.json({
       status: false,

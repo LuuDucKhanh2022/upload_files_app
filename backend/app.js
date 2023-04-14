@@ -19,7 +19,7 @@ connectDatabase();
 
 //Redis
 // Initiate and connect to the Redis client
-enableRedisClient();
+// enableRedisClient();
 
 // Middleware
 app.use(express.json());
