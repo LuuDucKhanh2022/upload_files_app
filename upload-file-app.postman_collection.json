@@ -1,0 +1,258 @@
+{
+	"info": {
+		"_postman_id": "ed003aee-e162-433a-affe-55a6f1e564b3",
+		"name": "upload-file-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20178971"
+	},
+	"item": [
+		{
+			"name": "upload mutiple file",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "",
+							"value": "test 1",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "des",
+							"value": "desc test 4",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "attach_file",
+							"type": "file",
+							"src": "/C:/Users/luudu/OneDrive/Documents/Baithi.pdf"
+						},
+						{
+							"key": "attach_file",
+							"type": "file",
+							"src": "/C:/Users/luudu/OneDrive/Documents/Presentation1.pptx"
+						},
+						{
+							"key": "attach_file",
+							"type": "file",
+							"src": "/C:/Users/luudu/OneDrive/Documents/hosts.txt",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v2/files/mutiple",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v2",
+						"files",
+						"mutiple"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upload single file",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "avatar",
+							"value": "test",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "myFile",
+							"type": "file",
+							"src": "/C:/Users/luudu/OneDrive/Documents/react.txt"
+						},
+						{
+							"key": "gallery",
+							"type": "file",
+							"src": "/C:/Users/luudu/OneDrive/Documents/react.txt",
+							"disabled": true
+						},
+						{
+							"key": "gallery",
+							"type": "file",
+							"src": "/C:/Users/luudu/OneDrive/Documents/Baithi.pdf",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v2/files",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v2",
+						"files"
+					],
+					"query": [
+						{
+							"key": "avatar",
+							"value": "\"Khanh\"",
+							"disabled": true
+						},
+						{
+							"key": "gallery",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create new intern",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Luu Duc Khannh\",\r\n    \"age\": 23\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v2/interns",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v2",
+						"interns"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fetch intern",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v2/interns",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v2",
+						"interns"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get files",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v2/files",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v2",
+						"files"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fetch files using redis",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/files",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"files"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fetch interns using redis",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/interns",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"interns"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get single files",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v2/files/6438b6f36a508cd465103561",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v2",
+						"files",
+						"6438b6f36a508cd465103561"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
