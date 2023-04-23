@@ -40,7 +40,7 @@ app.get("/files", async (req, res) => {
     await fetchApiUsingRedis(
       redisClient,
       "FILES",
-      `http://localhost:4000/api/v2/products`
+      `http://localhost:3000/api/v2/products`
     )
   );
 });
@@ -50,7 +50,7 @@ app.get("/interns", async (req, res) => {
       redisClient,
       "INTERN",
       // `http://localhost:3000/api/v2/interns`,
-      `http://localhost:4000/api/v2/products`
+      `http://localhost:3000/api/v2/products`
     )
   );
 });

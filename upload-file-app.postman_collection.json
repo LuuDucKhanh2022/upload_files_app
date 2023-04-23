@@ -78,7 +78,7 @@
 						{
 							"key": "myFile",
 							"type": "file",
-							"src": "/C:/Users/luudu/OneDrive/Documents/react.txt"
+							"src": "/C:/Users/PC/Downloads/test.txt"
 						},
 						{
 							"key": "gallery",
@@ -108,7 +108,7 @@
 					],
 					"query": [
 						{
-							"key": "avatar",
+							"key": "myfile",
 							"value": "\"Khanh\"",
 							"disabled": true
 						},
@@ -123,78 +123,25 @@
 			"response": []
 		},
 		{
-			"name": "create new intern",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"Luu Duc Khannh\",\r\n    \"age\": 23\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/v2/interns",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"v2",
-						"interns"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "fetch intern",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/v2/interns",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"v2",
-						"interns"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "get files",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Origin",
+						"value": "http://localhost:3000",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:3000/api/v2/files?type=pdf",
-					"protocol": "http",
+					"raw": "{{baseURL}}/api/v2/files",
 					"host": [
-						"localhost"
+						"{{baseURL}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"v2",
 						"files"
-					],
-					"query": [
-						{
-							"key": "type",
-							"value": "pdf"
-						}
 					]
 				}
 			},
@@ -204,7 +151,13 @@
 			"name": "fetch files using redis",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Origin",
+						"value": "https://stackoverflow.com",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:3000/files",
 					"protocol": "http",
@@ -214,25 +167,6 @@
 					"port": "3000",
 					"path": [
 						"files"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "fetch interns using redis",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/interns",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"interns"
 					]
 				}
 			},
@@ -259,6 +193,63 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "delete file",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v2/files/643df57b78dc643cb0c67ced",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v2",
+						"files",
+						"643df57b78dc643cb0c67ced"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get report",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/report?startDate=01/01/2023&endDate=24/04/2023",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"report"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "01/01/2023"
+						},
+						{
+							"key": "endDate",
+							"value": "24/04/2023"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/"
 		}
 	]
 }
