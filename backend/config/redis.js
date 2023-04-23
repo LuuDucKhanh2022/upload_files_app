@@ -7,4 +7,4 @@ const enableRedisClient = async () => {
   await redisClient.connect();
 };
 
-module.exports = enableRedisClient;
+module.exports = { enableRedisClient, redisClient};

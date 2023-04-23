@@ -166,4 +166,32 @@ const getSingleFile = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { uploadSingle, uploadMutiple, getFiles, getSingleFile };
+//Remove file
+ const deleteFile = asyncHandler(async ( req, res) => {
+  const file  = await File.findById(req.params.fileId);
+  if (!file) {
+    res.status(404).json({
+      success: false,
+      message: "can not found any file with this id"
+    })
+  } else {
+    try {
+      const directoryPath = __basedir + "/public/files/";
+      console.log(`directory path: ${directoryPath}`);
+      console.log(`file: ${file}`);
+      fs.unlinkSync(directoryPath + file.name);
+      await File.deleteOne({ _id: req.params.fileId});
+      res.status(200).json({
+        success: true,
+        message: "delele file sucessfully"
+      })
+
+    } catch (err) {
+      res.status(500).json({
+        success: false,
+        message: err.message
+      })
+    }
+  }
+ })
+module.exports = { uploadSingle, uploadMutiple, getFiles, getSingleFile, deleteFile };
