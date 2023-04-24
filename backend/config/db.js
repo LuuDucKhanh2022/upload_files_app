@@ -3,7 +3,8 @@ mongoose.set("strictQuery", true);
 const connectDatabase = () => {
   mongoose
     .connect(
-      "mongodb+srv://luuduckhanh:HpH4ZdYVWUa3kToZ@cluster0.kptbwmt.mongodb.net/mernChatApp?retryWrites=true&w=majority",
+      // "mongodb+srv://luuduckhanh:HpH4ZdYVWUa3kToZ@cluster0.kptbwmt.mongodb.net/mernChatApp?retryWrites=true&w=majority",
+      "mongodb://127.0.0.1:27017",
       {
         useUnifiedTopology: true,
         useNewUrlParser: true,

@@ -10,7 +10,8 @@ var path = require("path");
 const connectDatabase = require("./config/db");
 const corsOptions = require("./config/cors");
 const enableRedisClient = require("./config/redis");
-
+const MongoClient = require('mongodb').MongoClient;
+const url = 'mongodb://localhost:27017';
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use("/static", express.static(path.join(__dirname, "public")));
@@ -19,13 +20,14 @@ connectDatabase();
 
 //Redis
 // Initiate and connect to the Redis client
-enableRedisClient();
+// enableRedisClient();
 
 // Middleware
 app.use(express.json());
 app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 
 // ROUTES
 app.use("/assets", express.static(path.join(__dirname, "/public/assets")));
