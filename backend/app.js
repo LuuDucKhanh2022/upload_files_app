@@ -37,7 +37,6 @@ app.use("/assets", express.static(path.join(__dirname, "/public/assets")));
 app.use("/moment", (req, res) => {
   function getTime(startDate = '01/01/2023', endDate = '30/04/2023', type = 'month') {
     startDate = moment(startDate, 'DD/MM/YYYY');
-    
     endDate = moment(endDate, 'DD/MM/YYYY');
     console.log(startDate);
     console.log(endDate);
@@ -48,7 +47,7 @@ app.use("/moment", (req, res) => {
       let newStartOfPeriod = moment(startOfPeriod).add(1, type).startOf(type);
       let currentNo = startOfPeriod.get(type);
       result.push({
-        time: currentNo,
+        time: type !== "month" ? currentNo : currentNo +=1,
         startDate: startOfPeriod.format('DD/MM/YYYY'),
         endDate: startOfPeriod.endOf(type).format('DD/MM/YYYY'),
       })
