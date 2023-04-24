@@ -14,7 +14,7 @@ function getTime(startDate = '01/01/2023', endDate = '30/04/2023', type = 'month
     let newStartOfPeriod = moment(startOfPeriod).add(1, type).startOf(type);
     let currentNo = startOfPeriod.get(type);
     result.push({
-      time: type !== "month" ? currentNo : currentNo += 1,
+      time: type !== "month" ? `${type}: ${currentNo}` : `${type}: ${currentNo += 1}`,
       startDate: startOfPeriod.format('DD/MM/YYYY'),
       endDate: startOfPeriod.endOf(type).format('DD/MM/YYYY'),
     })
@@ -65,20 +65,15 @@ async function reportAggregate(startDate, endDate) {
 const getReport = async (req, res) => {
   try {
     let arrOfTime = getTime(req.query.startDate, req.query.endDate, req.query.type);
-    //test reportAggregate
-    // const newArrOfTime = await reportAggregate(req.query.startDate,req.query.endDate);
-    let result = [];
-     arrOfTime =  arrOfTime.forEach(async (item,index) => {
+    const result =  await Promise.all( arrOfTime.map( async (item) => {
       let data = await reportAggregate(item.startDate, item.endDate);
       item["data"]= data;
-      console.log(item);
-
-      // result.push(item);
-    })
-
+      return item;
+    }))
+    console.log(result)
     res.status(200).json({
       success: true,
-      data: arrOfTime
+      data: result
     })
   } catch (err) {
     res.status(500).json({
