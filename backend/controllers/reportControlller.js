@@ -61,7 +61,7 @@ const getReport = async (req, res) => {
     }
 
     const result = await reportAggregate(match, group, skip, limit);
-    
+
     if (!result.errorMessage) {
       res.status(200).json({
         success: true,
@@ -158,5 +158,68 @@ const getReport = async (req, res) => {
 //     });
 //   }
 // };
+
+
+function getTime(startDate, endDate, type) {
+  let years = [], months = [], quaters = [], weeks = [], result;
+  const yearStart = Number(startDate.split("-").pop());
+  const yearEnd = Number(endDate.split("-").pop());
+  const numOfYear = yearEnd - yearStart + 1;
+
+  switch (type) {
+    case "year":
+      if (numOfYear === 1) {
+        years.push(
+          {
+            time: `Năm : ${startDate.split("-").pop()}`,
+            startDate,
+            endDate
+          })
+      } else {
+        for (let i = yearStart; i <= yearEnd; i++) {
+          if (i === yearStart) {
+            years.push({
+              time: `Năm : ${i.split("-").pop()}`,
+              startDate,
+              startEnd: `31-12-${startDate.split("-").pop()}`
+            })
+          } else if (i === yearEnd) {
+            years.push({
+              time: `Năm : ${i.split("-").pop()}`,
+              startDate: `01-01-${i.split("-").pop()}`,
+              endDate: endDate
+            })
+          }
+        }
+      }
+
+      result = years;
+      break;
+    case "month":
+    /* const monthStart= Number(startDate.split("-")[1]);
+          console.log(monthStart);
+          
+          const monthEnd= Number(endDate.split("-")[1]);
+          console.log(monthEnd);
+          
+          const numOfMonth = monthEnd - monthStart + 1;
+          console.log(numOfMonth);
+          for(let i = monthStart; i > numOfMonth; i++) {
+            months.push( {
+              time:
+            })
+          } */
+
+    default:
+      break
+  };
+
+  /* let time={};
+    time["year"] = years;  time["quaters"] = quaters;
+    time["months"] = months; time["week"] = weeks;
+   */
+  return result;
+}
+
 
 module.exports = { getReport };
