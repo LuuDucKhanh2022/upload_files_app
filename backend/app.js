@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const lettersRoutes = require("./routes/x06_lettersRoutes");
 const fileRoutes = require("./routes/fileRoutes");
 const internRoutes = require("./routes/internRoutes");
 const fetchApiUsingRedis = require("./util/fetchApiUsingRedis");
@@ -9,9 +10,11 @@ require("dotenv").config();
 var path = require("path");
 const connectDatabase = require("./config/db");
 const corsOptions = require("./config/cors");
-const enableRedisClient = require("./config/redis");
-const MongoClient = require('mongodb').MongoClient;
-const url = 'mongodb://localhost:27017';
+
+const { enableRedisClient, redisClient } = require("./config/redis");
+const X06_letters = require("./models/x06_lettersModel");
+global.__basedir = __dirname;
+
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use("/static", express.static(path.join(__dirname, "public")));
@@ -31,6 +34,7 @@ app.use(bodyParser.json());
 
 // ROUTES
 app.use("/assets", express.static(path.join(__dirname, "/public/assets")));
+app.use("/report", lettersRoutes );
 app.use("/api/v2/files", fileRoutes);
 app.use("/api/v2/interns", internRoutes);
 app.get("/files", async (req, res) => {
@@ -38,7 +42,7 @@ app.get("/files", async (req, res) => {
     await fetchApiUsingRedis(
       redisClient,
       "FILES",
-      `http://localhost:3000/api/v2/files`
+      `http://localhost:3000/api/v2/products`
     )
   );
 });
@@ -47,7 +51,8 @@ app.get("/interns", async (req, res) => {
     await fetchApiUsingRedis(
       redisClient,
       "INTERN",
-      `http://localhost:3000/api/v2/interns`
+      // `http://localhost:3000/api/v2/interns`,
+      `http://localhost:3000/api/v2/products`
     )
   );
 });
